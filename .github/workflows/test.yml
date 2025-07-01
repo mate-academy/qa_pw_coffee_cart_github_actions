@@ -35,7 +35,7 @@ jobs:
           java-version: '17'
 
       - name: Install Allure CLI
-        run: wget https://github.com/allure-framework/allure2/releases/download/2.23.1/allure-2.23.1.tgz && sudo tar -zxvf allure-2.23.1.tgz -C /opt/ && sudo ln -s /opt/allure-2.23.1/bin/allure /usr/bin/allure
+        run: wget https://github.com/allure-framework/allure2/releases/download/2.23.1/allure-2.23.1.tgz && tar -zxvf allure-2.23.1.tgz -C /opt/ && ln -s /opt/allure-2.23.1/bin/allure /usr/bin/allure
 
       - name: Generate Allure Report
         run: allure generate --clean /tmp/allure-results --output allure-report
