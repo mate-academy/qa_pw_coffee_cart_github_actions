@@ -37,13 +37,13 @@ jobs:
         run: allure generate --clean /tmp/allure-results --output allure-report
 
       - name: Upload Allure Report as Artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: allure-report
           path: allure-report
 
       - name: Upload Allure Results
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: allure-results
           path: allure-results/
