@@ -29,7 +29,7 @@ jobs:
         run: docker run  -v /tmp/allure-results:/allure-results playwright-tests
 
       - name: Set up Allure Report
-        uses: allure-framework/allure-action@v2
+        uses: allure-framework/allure-action@v3
         with:
           allure_version: '2.13.8' # Specify the Allure version
 
