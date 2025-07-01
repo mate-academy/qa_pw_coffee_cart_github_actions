@@ -26,4 +26,24 @@ jobs:
         run: docker build -t playwright-tests .
 
       - name: Run Playwright tests
-        run: docker run playwright-tests
+        run: docker run  -v /tmp/allure-results:/allure-results playwright-tests
+
+      - name: Set up Allure Report
+        uses: allure-framework/allure-action@v2
+        with:
+          allure_version: '2.13.8' # Specify the Allure version
+
+      - name: Generate Allure Report
+        run: allure generate --clean /tmp/allure-results --output allure-report
+
+      - name: Upload Allure Report as Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: allure-report
+          path: allure-report
+
+      - name: Upload Allure Results
+        uses: actions/upload-artifact@v2
+        with:
+          name: allure-results
+          path: allure-results/
