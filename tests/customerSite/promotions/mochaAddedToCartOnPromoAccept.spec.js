@@ -2,7 +2,7 @@ import { test } from '../../_fixtures/fixtures';
 import { priceFormatStr } from '../../../src/common/helpers/priceFormatters';
 import { COFFEE_NAMES, COFFEE_PRICES } from '../../../src/constants';
 
-test('Discounted Mocha added to the Cart after promo accepting', async ({
+test.only('Discounted Mocha added to the Cart after promo accepting', async ({
   cartPage,
   menuPage,
 }) => {

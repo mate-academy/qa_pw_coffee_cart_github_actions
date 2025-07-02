@@ -26,28 +26,10 @@ jobs:
         run: docker build -t playwright-tests .
 
       - name: Run Playwright tests
-        run: docker run  -v /tmp/allure-results:/allure-results playwright-tests
-
-      - name: Set up JDK 11
-        uses: actions/setup-java@v4
-        with:
-          java-version: 17
-          distribution: 'adopt'
-
-      - name: Install Allure CLI
-        run: wget https://github.com/allure-framework/allure2/releases/download/2.23.1/allure-2.23.1.tgz && tar -zxvf allure-2.23.1.tgz -C /opt/ && ln -s /opt/allure-2.23.1/bin/allure /usr/bin/allure
-
-      - name: Generate Allure Report
-        run: allure generate --clean /tmp/allure-results --output allure-report
+        run: docker run  -v /tmp/allure-report:/allure-report playwright-tests
 
       - name: Upload Allure Report as Artifact
         uses: actions/upload-artifact@v4
         with:
           name: allure-report
-          path: allure-report
-
-      - name: Upload Allure Results
-        uses: actions/upload-artifact@v4
-        with:
-          name: allure-results
-          path: allure-results/
+          path: /tmp/allure-report
