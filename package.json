@@ -25,7 +25,7 @@
     "prepare": "husky",
     "test-staging": "ENV_TYPE=staging npx playwright test",
     "test-staging-ui": "ENV_TYPE=staging npx playwright test --ui",
-    "test-ci": "ENV_TYPE=staging npx playwright test; allure generate --clean allure-results --output /allure-report"
+    "test-ci": "ENV_TYPE=staging npx playwright test; allure generate --clean allure-results --output /allure-report; ls /allure-report"
   },
   "husky": {
     "hooks": {
