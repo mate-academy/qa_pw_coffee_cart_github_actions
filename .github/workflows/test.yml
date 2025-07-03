@@ -26,10 +26,10 @@ jobs:
         run: docker build -t playwright-tests .
 
       - name: Run Playwright tests
-        run: docker run  -v /temp/allure-report:/allure-report playwright-tests; ls /temp/allure-report
+        run: docker run  -v allure-report:/allure-report playwright-tests; ls allure-report
 
       - name: Upload Allure Report as Artifact
         uses: actions/upload-artifact@v4
         with:
           name: allure-report
-          path: /temp/allure-report
+          path: allure-report
