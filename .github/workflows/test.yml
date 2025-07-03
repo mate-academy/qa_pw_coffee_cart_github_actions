@@ -26,11 +26,10 @@ jobs:
         run: |
           mkdir -p allure-report; 
           docker run  -v $PWD/allure-report:/allure-report playwright-tests;
-          echo Execution complete;
           ls $PWD/allure-report;
 
       - name: Upload Allure Report as Artifact
         uses: actions/upload-artifact@v4
         with:
           name: allure-report
-          path: allurereport
+          path: allure-report
