@@ -53,6 +53,6 @@ jobs:
         run: |
           ls ${{ env.GITHUB_WORKSPACE }}
       - run: echo "This job's status is ${{ job.status }}"
-      - run: echo "App Name ${{ env.APP_NAME }}, log level: ${{ env.LOG_LEVEL }} "
+      - run: echo "App Name ${{ env.APP_NAME }} ${{ env.LOG_LEVEL }} "
 
 
