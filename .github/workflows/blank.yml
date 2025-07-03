@@ -44,15 +44,12 @@ jobs:
       - run: echo "This job is running on ${{ runner.os }} server hosted by GitHub"
       - run: echo "Name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}"
       - name: List Files in the repo
-        run: |
-          ls ${{ github.workspace }}
-      - run: echo "This job's status is ${{ job.status }}"
-      - name: List Files in the repo
         env:
           GITHUB_WORKSPACE: ${{ github.workspace }}
         run: |
           ls ${{ env.GITHUB_WORKSPACE }}
       - run: echo "This job's status is ${{ job.status }}"
       - run: echo "App Name ${{ env.APP_NAME }} ${{ env.LOG_LEVEL }} "
+
 
 
