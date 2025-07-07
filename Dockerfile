@@ -8,4 +8,4 @@ RUN npx playwright install --with-deps chromium
 
 COPY . .
 
-CMD ["npm", "run", "test-staging"]
+CMD ["npm", "run", "test-ci"]
