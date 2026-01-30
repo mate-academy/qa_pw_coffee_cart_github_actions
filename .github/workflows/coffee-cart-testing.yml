@@ -1,0 +1,61 @@
+name: Coffee-cart testing workflow
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  e2e-testing:
+    name: Run e2e tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: docker/setup-docker-action@v4.3.0
+      - run: docker build -t e2e-tests .
+      - run: docker run -v $PWD/allure_results:/allure_results e2e-tests
+      - uses: actions/upload-artifact@v4
+        with:
+          name: allure_results
+          path: allure_results
+
+  generate-report:
+    name: Generate Allure report
+    needs: e2e-testing
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-java@v3
+        with:
+          distribution: 'microsoft'
+          java-version: '17'
+      - name: Install Allure CLI
+        run: |
+          sudo wget https://github.com/allure-framework/allure2/releases/download/2.34.1/allure-2.34.1.tgz 
+          sudo tar -zxvf allure-2.34.1.tgz -C /opt/ 
+          sudo ln -s /opt/allure-2.34.1/bin/allure /usr/bin/allure
+      - uses: actions/download-artifact@v4
+      - run: allure generate -c allure_results -o _site
+      - uses: actions/upload-artifact@v4
+        with:
+          name: _site
+          path: _site
+          retention-days: 1
+
+  publish-report:
+    name: Report publication
+    needs: generate-report
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
