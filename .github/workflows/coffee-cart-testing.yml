@@ -36,7 +36,6 @@ jobs:
 
  generate-report:
    name: Generate Allure report
-   need: e2e-testing
    runs-on: ubuntu-latest
    steps:
      - name: Setup JAVA
@@ -61,8 +60,4 @@ jobs:
          path: _site
          retention-days: 1
 
-      
-      
-      
-
-
+        
