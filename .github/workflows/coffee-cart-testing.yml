@@ -1,0 +1,36 @@
+name: Coffee-cart testing workflow
+on:
+ push:
+   branches:
+     - main
+ pull_request:
+   branches:
+     - main
+ workflow_dispatch:
+ jobs:
+ e2e-testing:
+jobs:
+ e2e-testing:
+   runs-on: ubuntu-latest
+
+   steps:
+     - name: Check out the repository
+       uses: actions/checkout@v2
+
+
+jobs:
+ e2e-testing:
+   runs-on: ubuntu-latest
+
+   steps:
+      - name: Check out the repository
+        uses: actions/checkout@v2
+
+      - name: Set up Docker
+        uses: docker/setup-docker-action@v4.3.0
+       - name: Build Docker image
+        run: docker build -t e2e-tests .
+      - name: Run e2e tests
+        run: |
+         docker run e2e-tests
+
