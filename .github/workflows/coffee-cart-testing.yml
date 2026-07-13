@@ -17,8 +17,10 @@ jobs:
        uses: actions/checkout@v2
 
      - name: Set up Docker
-       uses: docker/setup-docker-action@v6
-
+       uses: docker/setup-docker-action@v3
+       
+     - name: Set up Docker
+       uses: docker/setup-docker-action@v4.3.0
 
      - name: Build Docker image
        run: docker build -t e2e-tests .
