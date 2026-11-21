@@ -69,6 +69,7 @@ jobs:
 
   publish-report:
     name: Report publication
+    if: github.event_name != 'pull_request'
     needs: generate-report
     runs-on: ubuntu-latest
 
