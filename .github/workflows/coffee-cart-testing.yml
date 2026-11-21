@@ -25,4 +25,10 @@ jobs:
 
       - name: Run e2e tests
         run: |
-          docker run e2e-tests
+          docker run -v $PWD/allure_results:/allure_results e2e-tests
+
+      - name: Upload Allure Results as Artifact
+        uses: actions/upload-artifact@v7.0.2
+        with:
+          name: allure_results
+          path: allure_results
