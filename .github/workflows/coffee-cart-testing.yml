@@ -36,6 +36,7 @@ jobs:
 
   generate-report:
     name: Generate Allure report
+    needs: e2e-testing
     runs-on: ubuntu-latest
 
     steps:
