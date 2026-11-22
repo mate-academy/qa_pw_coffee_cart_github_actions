@@ -34,6 +34,7 @@ jobs:
           docker run -e CI=true -v $PWD/allure_results:/allure_results e2e-tests
 
       - name: Upload Allure Results as Artifact
+        if: always() & !cancelled()
         uses: actions/upload-artifact@v7.0.2
         with:
           name: allure_results
@@ -41,6 +42,7 @@ jobs:
 
   generate-report:
     name: Generate Allure report
+    if: always() & !cancelled()
     needs: e2e-testing
     runs-on: ubuntu-latest
 
@@ -69,6 +71,7 @@ jobs:
 
   publish-report:
     name: Report publication
+    if: always() & !cancelled()
     if: github.event_name != 'pull_request'
     needs: generate-report
     runs-on: ubuntu-latest
