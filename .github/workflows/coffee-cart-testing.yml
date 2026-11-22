@@ -71,8 +71,7 @@ jobs:
 
   publish-report:
     name: Report publication
-    if: always() & !cancelled()
-    if: github.event_name != 'pull_request'
+    if: always() && !cancelled() && github.event_name != 'pull_request'
     needs: generate-report
     runs-on: ubuntu-latest
 
